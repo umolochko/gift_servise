@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, g, redirect, url_for
 import sqlite3
-import openai
 import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 DATABASE = 'certificates.db'
-openai.api_key = os.getenv("sk-proj-cWVTWVnn1vZtLI5VLJmpT3BlbkFJWKS5SbRvpdSXHyMNKyJ9")
+
+# Загрузка переменных окружения из .env файла
+load_dotenv()
 
 
 # Функция для подключения к базе данных
@@ -127,27 +129,29 @@ def process_quiz_form():
 
 
 def generate_quiz(age, gender, interests):
-    prompt = f"Create a quiz with 5 questions for a {age}-year-old {gender} interested in {interests}. Each question should have 4 answer options."
-
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a quiz generator."},
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=500
-    )
-
-    questions = response['choices'][0]['message']['content'].strip().split('\n\n')
-    quiz = []
-
-    for question in questions:
-        parts = question.split('\n')
-        question_text = parts[0]
-        options = parts[1:5]
-        quiz.append({'question': question_text, 'options': options})
-
-    return quiz
+    # Заглушка для генерации квиза
+    return [
+        {
+            'question': 'What is the capital of France?',
+            'options': ['Paris', 'London', 'Berlin', 'Madrid']
+        },
+        {
+            'question': 'Who wrote "To Kill a Mockingbird"?',
+            'options': ['Harper Lee', 'Mark Twain', 'Ernest Hemingway', 'F. Scott Fitzgerald']
+        },
+        {
+            'question': 'What is the boiling point of water?',
+            'options': ['100°C', '0°C', '50°C', '200°C']
+        },
+        {
+            'question': 'Which planet is known as the Red Planet?',
+            'options': ['Mars', 'Earth', 'Jupiter', 'Saturn']
+        },
+        {
+            'question': 'What is the largest mammal in the world?',
+            'options': ['Blue Whale', 'Elephant', 'Giraffe', 'Polar Bear']
+        }
+    ]
 
 
 if __name__ == '__main__':
