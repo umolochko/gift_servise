@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose Gift Types</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Gift Types</h1>
+        <form action="/process_gift_types" method="post">
+            <input type="hidden" name="name" value="{{ name }}">
+            <input type="hidden" name="phone" value="{{ phone }}">
+            <input type="hidden" name="email" value="{{ email }}">
+            <input type="hidden" name="event_date" value="{{ event_date }}">
+            <input type="hidden" name="send_via" value="{{ send_via }}">
+
+            <label><input type="checkbox" name="gift_type" value="Online Quest"> Online Quest</label>
+            <label><input type="checkbox" name="gift_type" value="Quiz"> Quiz</label>
+            <label><input type="checkbox" name="gift_type" value="Customized Greeting Design"> Customized Greeting Design</label>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Информация для онлайн-квеста</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Введите информацию для онлайн-квеста</h1>
+        <form action="/process_quest_form" method="post">
+            <label for="age">Возраст:</label>
+            <input type="text" id="age" name="age" required>
+
+            <label for="gender">Пол:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
+                <option value="other">Другой</option>
+            </select>
+
+            <label for="interests">Увлечения:</label>
+            <input type="text" id="interests" name="interests" required>
+
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
+</body>
+</html>
